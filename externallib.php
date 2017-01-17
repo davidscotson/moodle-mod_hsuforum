@@ -619,7 +619,7 @@ class mod_hsuforum_external extends external_api {
         $discussions = array();
 
         // Request and permission validation.
-        $forum = $DB->get_record('hsuforum', array('id' => $params['forumid']), 'id', MUST_EXIST);
+        $forum = $DB->get_record('hsuforum', array('id' => $params['forumid']), '*', MUST_EXIST);
         list($course, $cm) = get_course_and_cm_from_instance($forum, 'hsuforum');
 
         $context = context_module::instance($cm->id);

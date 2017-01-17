@@ -213,7 +213,9 @@ class discussion_service {
         $discussion->id = hsuforum_add_discussion($discussion, null, $message);
 
         $file = $uploader->process_file_upload($discussion->firstpost);
-        $this->db->set_field('hsuforum_posts', 'attachment', empty($file) ? 0 : 1, array('id' => $discussion->firstpost));
+        if (!is_null($file)) {
+            $this->db->set_field('hsuforum_posts', 'attachment', 1, array('id' => $discussion->firstpost));
+        }
     }
 
     /**
